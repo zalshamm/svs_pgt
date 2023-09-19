@@ -1,0 +1,28 @@
+apiVersion: ran.openshift.io/v1
+kind: PolicyGenTemplate
+metadata:
+  name: "ocp1-upgrade"
+  namespace: "ztp-ocp1-upgrade"
+spec:
+bindingRules:
+  name: "ocp1" 
+#mcp: "master"
+remediationAction: inform
+sourceFiles:
+    - fileName: ClusterVersion.yaml
+      policyName: "platform-upgrade-prep"
+      metadata:
+       name: version
+       annotations:
+        ran.openshift.io/ztp-deploy-wave: "1"
+      spec:
+        channel: "stable-4.13"
+    - fileName: ClusterVersion.yaml
+      policyName: "platform-upgrade"
+      metadata:
+       name: version
+      spec:
+       channel: "stable-4.13"
+       desiredUpdate:
+         version: 4.13.12
+         force: true
