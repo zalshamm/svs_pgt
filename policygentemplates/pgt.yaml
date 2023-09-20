@@ -4,11 +4,11 @@ metadata:
   name: "ocp1-upgrade"
   namespace: "ztp-ocp1-upgrade"
 spec:
-bindingRules:
-  name: "ocp1" 
+  bindingRules:
+    name: "ocp1" 
 #mcp: "master"
-remediationAction: inform
-sourceFiles:
+  remediationAction: inform
+  sourceFiles:
     - fileName: ClusterVersion.yaml
       policyName: "platform-upgrade-prep"
       metadata:
